@@ -1,0 +1,12 @@
+diff --git a/go.mod b/go.mod
+index 69aaa42..cd59d87 100644
+--- a/go.mod
++++ b/go.mod
+@@ -1,6 +1,6 @@
+ module github.com/kubernetes-csi/livenessprobe
+ 
+-go 1.23.1
++go 1.22.9
+ 
+ require (
+ 	github.com/container-storage-interface/spec v1.11.0
