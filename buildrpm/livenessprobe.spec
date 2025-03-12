@@ -6,7 +6,7 @@
 
 %global app_name                livenessprobe
 %global app_version             2.15.0
-%global oracle_release_version  1
+%global oracle_release_version  2
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 
 Name:           %{app_name}
@@ -19,12 +19,16 @@ Url:            https://github.com/oracle-cne/livenessprobe.git
 Source:         %{name}-%{version}.tar.bz2
 BuildRequires:  golang
 BuildRequires:	make
+Patch0:         go.mod.patch
+Patch1:         go.sum.patch
 
 %description
 Sidecar container that exposes an HTTP /healthz endpoint, which serves as kubelet's livenessProbe hook to monitor health of a CSI driver.
 
 %prep
 %setup -q
+%patch0
+%patch1
 
 %build
 make build
@@ -37,6 +41,9 @@ install -m 755 bin/%{app_name} %{buildroot}/%{app_name}
 /%{app_name}
 
 %changelog
+* Wed Mar 12 2025 Michael Gianatassio <michael.gianatassio@oracle.com> - 2.15.0-2
+- Update some go.mod dependencies.
+
 * Tue Mar 11 2025 Michael Gianatassio <michael.gianatassio@oracle.com> - 2.15.0-1
 - Added Oracle specific build files for CSI livenessprobe.
 
