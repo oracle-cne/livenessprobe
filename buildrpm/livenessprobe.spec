@@ -21,7 +21,7 @@ Url:            https://github.com/oracle-cne/livenessprobe.git
 Source:         %{name}-%{version}.tar.bz2
 BuildRequires:  golang
 BuildRequires:	make
-Patch0:         buildrpm/build.make.patch
+Patch0:         build.make.patch
 
 %description
 Sidecar container that exposes an HTTP /healthz endpoint, which serves as kubelet's livenessProbe hook to monitor health of a CSI driver.
